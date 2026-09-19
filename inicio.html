@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block contenido %}
+
+<div class="text-center mb-5">
+
+    <h1 class="display-4">
+        Inventario Tecnológico
+    </h1>
+
+    <p class="lead">
+        Sistema web desarrollado con Flask,
+        Bootstrap y PostgreSQL para administrar
+        el inventario de productos tecnológicos.
+    </p>
+
+</div>
+
+
+<div class="row g-4 justify-content-center">
+
+    <div class="col-md-5">
+
+        <div class="card shadow-sm h-100">
+
+            <div class="card-body text-center">
+
+                <h3 class="card-title">
+                    Productos
+                </h3>
+
+                <p class="card-text">
+                    Consulta, busca, actualiza y elimina
+                    productos del inventario.
+                </p>
+
+                <a
+                    href="{{ url_for('productos') }}"
+                    class="btn btn-primary">
+                    Ver productos
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="col-md-5">
+
+        <div class="card shadow-sm h-100">
+
+            <div class="card-body text-center">
+
+                <h3 class="card-title">
+                    Nuevo producto
+                </h3>
+
+                <p class="card-text">
+                    Registra un nuevo producto
+                    en el inventario.
+                </p>
+
+                <a
+                    href="{{ url_for('nuevo_producto') }}"
+                    class="btn btn-success">
+                    Registrar producto
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

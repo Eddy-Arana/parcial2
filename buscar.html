@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block title %}Buscar productos{% endblock %}
+
+{% block contenido %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <h1>Resultado de búsqueda</h1>
+
+    <a
+        href="{{ url_for('productos') }}"
+        class="btn btn-secondary">
+        Ver todos
+    </a>
+
+</div>
+
+
+<form
+    action="{{ url_for('buscar_productos') }}"
+    method="GET"
+    class="row g-2 mb-4">
+
+    <div class="col-md-10">
+
+        <input
+            type="text"
+            name="q"
+            value="{{ texto }}"
+            class="form-control"
+            placeholder="Buscar producto">
+
+    </div>
+
+    <div class="col-md-2">
+
+        <button
+            type="submit"
+            class="btn btn-primary w-100">
+            Buscar
+        </button>
+
+    </div>
+
+</form>
+
+
+{% if productos %}
+
+<div class="table-responsive">
+
+    <table class="table table-bordered table-striped">
+
+        <thead class="table-dark">
+
+            <tr>
+
+                <th>Código</th>
+                <th>Nombre</th>
+                <th>Categoría</th>
+                <th>Precio</th>
+                <th>Existencia</th>
+                <th>Activo</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for producto in productos %}
+
+            <tr>
+
+                <td>{{ producto.codigo }}</td>
+
+                <td>{{ producto.nombre }}</td>
+
+                <td>{{ producto.categoria }}</td>
+
+                <td>
+                    Q {{ "%.2f"|format(producto.precio) }}
+                </td>
+
+                <td>{{ producto.existencia }}</td>
+
+                <td>
+
+                    {% if producto.activo %}
+                        <span class="badge bg-success">Sí</span>
+                    {% else %}
+                        <span class="badge bg-danger">No</span>
+                    {% endif %}
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% else %}
+
+<div class="alert alert-warning">
+    No se encontraron productos para "{{ texto }}".
+</div>
+
+{% endif %}
+
+{% endblock %}
